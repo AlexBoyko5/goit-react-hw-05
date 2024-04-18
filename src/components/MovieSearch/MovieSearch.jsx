@@ -13,9 +13,7 @@ const MovieSearch = () => {
 			const url = `https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1&query=${query}`;
 			const options = {
 				headers: {
-					Authorization: {
-						/*/!! ссылка !!!!!*/
-					},
+					Authorization: 'Bearer 8aba4e3419a44727b7eb66f35fce4fa2',
 				},
 			};
 			const respons = await axios.get(url, options);
