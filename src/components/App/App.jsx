@@ -2,6 +2,7 @@ import reactLogo from '../../assets/react.svg';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
+import MovieSearch from '../MovieSearch/MovieSearch';
 
 import './App.css';
 
@@ -30,6 +31,7 @@ function App() {
 					<Route exact path="/movies" Component={MoviesPage} />
 					<Route />
 				</Switch>
+				<MovieSearch />
 			</Suspense>
 		</Router>
 	);
