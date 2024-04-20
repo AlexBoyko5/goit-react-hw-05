@@ -8,13 +8,13 @@ import './App.css';
 
 //загрузка компонентов
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
-const MovieDetailsPage = lazy(() =>
-	import('../../pages/MovieDetailsPage/MovieDetailsPage')
-);
-const NotFoundPage = lazy(() =>
-	import('../../pages/NotFoundPage/NotFoundPage')
-);
+// const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
+// const MovieDetailsPage = lazy(() =>
+// 	import('../../pages/MovieDetailsPage/MovieDetailsPage')
+// );
+// const NotFoundPage = lazy(() =>
+// 	import('../../pages/NotFoundPage/NotFoundPage')
+// );
 
 function App() {
 	const apiKey = '8aba4e3419a44727b7eb66f35fce4fa2';
@@ -31,7 +31,7 @@ function App() {
 					{/* сам маршрут*/}
 					<Route exact path="/movies">
 						<MovieSearch apiKey={apiKey} />
-						<MoviePage />
+						{/* <MoviePage /> */}
 					</Route>
 				</Switch>
 				<MovieSearch />
