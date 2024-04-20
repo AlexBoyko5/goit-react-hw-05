@@ -1,4 +1,4 @@
-import reactLogo from '../../assets/react.svg';
+// import reactLogo from '../../assets/react.svg';
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
@@ -17,6 +17,7 @@ const NotFoundPage = lazy(() =>
 );
 
 function App() {
+	const apiKey = '8aba4e3419a44727b7eb66f35fce4fa2';
 	return (
 		<Router>
 			{/* Router для маршрутизации*/}
@@ -28,8 +29,10 @@ function App() {
 					{/* Switch для выбор только одного маршрут*/}
 					<Route exact path="/" Component={HomePage} />
 					{/* сам маршрут*/}
-					<Route exact path="/movies" Component={MoviesPage} />
-					<Route />
+					<Route exact path="/movies">
+						<MovieSearch apiKey={apiKey} />
+						<MoviePage />
+					</Route>
 				</Switch>
 				<MovieSearch />
 			</Suspense>
