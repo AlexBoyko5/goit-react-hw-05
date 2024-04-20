@@ -15,7 +15,6 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 // const NotFoundPage = lazy(() =>
 // 	import('../../pages/NotFoundPage/NotFoundPage')
 // );
-
 function App() {
 	const apiKey = '8aba4e3419a44727b7eb66f35fce4fa2';
 	return (
