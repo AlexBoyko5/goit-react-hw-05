@@ -4,14 +4,10 @@ function Navigation() {
 		<nav>
 			<ul>
 				<li>
-					<NavLink exact to="/">
-						Home
-					</NavLink>
+					<NavLink to="/">Home</NavLink>
 				</li>
 				<li>
-					<NavLink exact to="/movies">
-						Movies
-					</NavLink>
+					<NavLink to="/movies">Movies</NavLink>
 				</li>
 			</ul>
 		</nav>

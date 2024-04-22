@@ -3,15 +3,17 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MovieSearch from '../MovieSearch/MovieSearch';
+import MovieCast from '../MovieCast/MovieCast';
+import MovieReviews from '../MovieReviews/MovieReviews';
 
 import './App.css';
 
 //загрузка компонентов
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
-// const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
-// const MovieDetailsPage = lazy(() =>
-// 	import('../../pages/MovieDetailsPage/MovieDetailsPage')
-// );
+const MoviesPage = lazy(() => import('../../pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+	import('../../pages/MovieDetailsPage/MovieDetailsPage')
+);
 const NotFoundPage = lazy(() =>
 	import('../../pages/NotFoundPage/NotFoundPage')
 );
@@ -26,14 +28,17 @@ function App() {
 				<Routes>
 					{/* Suspense для заглушки*/}
 					<Route exact path="/" element={<HomePage apiKey={apiKey} />} />
+					<Route path="/movies" element={<MoviesPage apiKey={apiKey} />} />
 					<Route
-						exact
-						path="/movies"
-						element={<MovieSearch apiKey={apiKey} />}
-					/>
+						path="/movies/:movieId"
+						element={<MovieDetailsPage apiKey={apiKey} />}
+					>
+						<Route path="cast" element={<MovieCast />} />
+						<Route path="reviews" element={<MovieReviews />} />
+					</Route>
 					<Route path="*" element={<NotFoundPage />} />
-					<MovieSearch />
 				</Routes>
+				<MovieSearch />
 			</Suspense>
 		</Router>
 	);
