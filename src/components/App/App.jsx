@@ -23,6 +23,7 @@ function App() {
 		<Router>
 			{/* Router для маршрутизации*/}
 			<Navigation />
+			<MovieSearch />
 			{/* Navigation для Router на всех стр*/}
 			<Suspense fallback={<div>Loading...</div>}>
 				<Routes>
@@ -38,7 +39,6 @@ function App() {
 					</Route>
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
-				<MovieSearch />
 			</Suspense>
 		</Router>
 	);

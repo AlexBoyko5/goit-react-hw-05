@@ -26,7 +26,7 @@ const MovieSearch = ({ apiKey }) => {
 	};
 	return (
 		<div>
-			<h1>Search movies</h1>
+			<h1></h1>
 			<input
 				type="text"
 				value={query}
