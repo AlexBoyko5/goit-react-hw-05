@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MovieList from '../../components/MovieList/MovieList';
 import axios from 'axios';
+import styles from './HomePage.module.css';
 
 const HomePage = ({ apiKey }) => {
 	const [trendingMovies, setTrendingMovies] = useState([]);
@@ -24,8 +25,8 @@ const HomePage = ({ apiKey }) => {
 		fetchTrendingMovies();
 	}, [apiKey]);
 	return (
-		<div>
-			<h1>Trending Movies</h1>
+		<div className={styles.homepage}>
+			<h1>Trending Today</h1>
 			{error && <div>Error:{error}</div>}
 			<MovieList movies={trendingMovies} />
 		</div>

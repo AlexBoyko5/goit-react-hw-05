@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import MovieList from '../../components/MovieList/MovieList';
+import styles from './MovieSearch.module.css';
 
 const MovieSearch = ({ apiKey }) => {
 	// формир 'состояния'
@@ -25,15 +26,18 @@ const MovieSearch = ({ apiKey }) => {
 		}
 	};
 	return (
-		<div>
+		<div className={styles.moviesearch}>
 			<h1></h1>
 			<input
+				className={styles.input}
 				type="text"
 				value={query}
 				onChange={(event) => setQuery(event.target.value)}
 				placeholder="Enter movie title"
 			/>
-			<button onClick={handleSearch}>Search</button>
+			<button onClick={handleSearch} type="submit" className={styles.button}>
+				Search
+			</button>
 			{error && <div>Error:{error}</div>}
 			<MovieList movies={searchResults} />
 		</div>

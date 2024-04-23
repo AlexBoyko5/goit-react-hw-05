@@ -1,5 +1,5 @@
 // import reactLogo from '../../assets/react.svg';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MovieSearch from '../MovieSearch/MovieSearch';
@@ -18,25 +18,34 @@ const NotFoundPage = lazy(() =>
 	import('../../pages/NotFoundPage/NotFoundPage')
 );
 function App() {
-	const apiKey = '8aba4e3419a44727b7eb66f35fce4fa2';
+	const apiKey = 'ec261201863a731c0d3b446536ab92e4';
+	// const [currentPage, setCurrentPage] = useState('home');
+	// const handleNavigation = (page) => {
+	// 	setCurrentPage(page);
+	// };
 	return (
 		<Router>
 			{/* Router для маршрутизации*/}
 			<Navigation />
-			<MovieSearch />
+
 			{/* Navigation для Router на всех стр*/}
 			<Suspense fallback={<div>Loading...</div>}>
+				{/* Suspense для заглушки*/}
 				<Routes>
-					{/* Suspense для заглушки*/}
 					<Route exact path="/" element={<HomePage apiKey={apiKey} />} />
-					<Route path="/movies" element={<MoviesPage apiKey={apiKey} />} />
-					<Route
-						path="/movies/:movieId"
-						element={<MovieDetailsPage apiKey={apiKey} />}
-					>
-						<Route path="cast" element={<MovieCast />} />
-						<Route path="reviews" element={<MovieReviews />} />
+
+					<Route path="/movies">
+						<Route path="" element={<MovieSearch />} />
+						<Route path="reviews" index element={<MoviesPage />} />
+						<Route
+							path=":movieId"
+							element={<MovieDetailsPage apiKey={apiKey} />}
+						>
+							<Route path="cast" element={<MovieCast />} />
+							<Route path="reviews" element={<MovieReviews />} />
+						</Route>
 					</Route>
+
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</Suspense>

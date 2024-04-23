@@ -1,8 +1,9 @@
+import styles from './MovieList.module.css';
 function MovieList({ movies }) {
 	return (
-		<div>
+		<div className={styles.movielist}>
 			<h2></h2>
-			<ul>
+			<ul className={styles.list}>
 				{movies.map((movie) => (
 					<li key={movie.id}>{movie.title}</li>
 				))}
