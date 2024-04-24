@@ -2,8 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import MovieList from '../../components/MovieList/MovieList';
 import styles from './MovieSearch.module.css';
+import { API_READ_ACCESS_TOKEN } from '../../components/API/API';
 
-const MovieSearch = ({ apiKey }) => {
+const MovieSearch = () => {
 	// формир 'состояния'
 	const [query, setQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
@@ -13,7 +14,7 @@ const MovieSearch = ({ apiKey }) => {
 		try {
 			const url = `https://api.themoviedb.org/3/search/movie`;
 			const params = {
-				api_key: apiKey,
+				api_key: API_READ_ACCESS_TOKEN,
 				include_adult: false,
 				language: 'en-US',
 				page: 1,

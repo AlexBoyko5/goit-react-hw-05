@@ -4,8 +4,9 @@ import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './MovieDetailsPage.module.css';
+import { API_READ_ACCESS_TOKEN } from '../../components/API/API';
 
-const MovieDetailsPage = ({ apiKey }) => {
+const MovieDetailsPage = () => {
 	const [movieDetails, setMovieDetails] = useState({});
 	const [cast, setCast] = useState([]);
 	const [reviews, setReviews] = useState([]);
@@ -18,10 +19,9 @@ const MovieDetailsPage = ({ apiKey }) => {
 				const url = `https://api.themoviedb.org/3/movie/${movieId}`;
 				const options = {
 					headers: {
-						Authorization: `Bearer ${apiKey}`,
+						Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`,
 					},
 				};
-				// const params = { api_key: apiKey, language: 'en-US' };
 				const response = await axios.get(url, options);
 				setMovieDetails(response.data);
 			} catch (error) {
@@ -31,14 +31,10 @@ const MovieDetailsPage = ({ apiKey }) => {
 		const fecthMovieReviews = async () => {
 			try {
 				const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
-				// const params = {
-				// 	api_key: apiKey,
-				// 	language: 'en-US',
-				// 	page: 1,
-				// };
+
 				const options = {
 					headers: {
-						Authorization: `Bearer ${apiKey}`,
+						Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`,
 					},
 				};
 				const response = await axios.get(url, options);
@@ -50,13 +46,10 @@ const MovieDetailsPage = ({ apiKey }) => {
 		const fecthMovieCast = async () => {
 			try {
 				const url = `https://api.themoviedb.org/3/movie/${movieId}/credits`;
-				// const params = {
-				// 	api_key: apiKey,
-				// 	language: 'en-US',
-				// };
+
 				const options = {
 					headers: {
-						Authorization: `Bearer ${apiKey}`,
+						Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`,
 					},
 				};
 				const response = await axios.get(url, options);
@@ -68,7 +61,7 @@ const MovieDetailsPage = ({ apiKey }) => {
 		fetchMovieDetails();
 		fecthMovieCast();
 		fecthMovieReviews();
-	}, [movieId, apiKey]);
+	}, [movieId]);
 	return (
 		<div>
 			{!movieDetails ? ( // обработка если данные еще загружаются

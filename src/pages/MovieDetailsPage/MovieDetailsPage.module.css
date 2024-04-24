@@ -8,9 +8,11 @@
     transition: background-color 0.3s ease;
 }
 
-/* .container {
-    display: flex;
-    flex-direction: row;
-    gap: 24px;
-    padding-top: 12px;
-} */
+.container {
+    justify-content: center;
+    margin-bottom: 20px;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 20px;
+}

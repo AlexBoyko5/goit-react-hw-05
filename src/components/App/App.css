@@ -43,3 +43,9 @@
 .read-the-docs {
     color: #888;
 }
+
+.search-container {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+}

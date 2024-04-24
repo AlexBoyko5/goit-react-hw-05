@@ -1,5 +1,5 @@
 // import reactLogo from '../../assets/react.svg';
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MovieSearch from '../MovieSearch/MovieSearch';
@@ -19,10 +19,7 @@ const NotFoundPage = lazy(() =>
 );
 function App() {
 	const apiKey = 'ec261201863a731c0d3b446536ab92e4';
-	// const [currentPage, setCurrentPage] = useState('home');
-	// const handleNavigation = (page) => {
-	// 	setCurrentPage(page);
-	// };
+
 	return (
 		<Router>
 			{/* Router для маршрутизации*/}
@@ -34,7 +31,7 @@ function App() {
 				<Routes>
 					<Route exact path="/" element={<HomePage apiKey={apiKey} />} />
 
-					<Route path="/movies">
+					<Route path="/movies" className="search-container">
 						<Route path="" element={<MovieSearch />} />
 						<Route path="reviews" index element={<MoviesPage />} />
 						<Route

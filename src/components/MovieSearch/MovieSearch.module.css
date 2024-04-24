@@ -2,8 +2,10 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    margin-top: 28px;
     align-items: center;
+    position: absolute;
+    top: 60px;
+    left: 20px;
 }
 
 .input {
