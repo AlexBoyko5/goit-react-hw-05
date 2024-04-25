@@ -2,7 +2,7 @@ import styles from './MovieReviews.module.css';
 const MovieReviews = ({ reviews }) => {
 	return (
 		<div>
-			<h2>Reviews</h2>
+			{/* <h2>Reviews</h2> */}
 			{reviews && reviews.length > 0 ? (
 				<ul className={styles.reviews.list}>
 					{reviews.map((review) => (

@@ -11,8 +11,20 @@ const MovieDetailsPage = () => {
 	const [cast, setCast] = useState([]);
 	const [reviews, setReviews] = useState([]);
 	const [error, setError] = useState(null);
+	const [castVisible, setCastVisible] = useState(false);
+	const [reviewsVisible, setReviewsVisible] = useState(false);
+
 	const navigate = useNavigate();
 	const { movieId } = useParams();
+
+	const toggleCast = () => {
+		setCastVisible(!castVisible);
+	};
+
+	const toggleReviews = () => {
+		setReviewsVisible(!reviewsVisible);
+	};
+
 	useEffect(() => {
 		const fetchMovieDetails = async () => {
 			try {
@@ -71,15 +83,29 @@ const MovieDetailsPage = () => {
 					<button onClick={() => navigate(-1)} className={styles.button}>
 						Go back
 					</button>
-					<h1>{movieDetails.title}</h1>
-					<p>{movieDetails.overwiew}</p>
-					<img
-						src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
-						alt={movieDetails.title}
-					/>
+					<div className={styles.movieInfo}>
+						<img
+							src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
+							alt={movieDetails.title}
+						/>
+						<div className={styles.movieDetails}>
+							<h1 className={styles.title}>{movieDetails.title}</h1>
+							<p>{movieDetails.overview}</p>
+						</div>
+					</div>
 					{error && <div>Error: {error}</div>}
-					<MovieCast cast={cast} />
-					<MovieReviews reviews={reviews} />
+					<div>
+						<h2 onClick={toggleCast} className={styles.toggle}>
+							Cast
+						</h2>
+						{castVisible && <MovieCast cast={cast} />}
+					</div>
+					<div>
+						<h2 onClick={toggleReviews} className={styles.toggle}>
+							Reviews
+						</h2>
+						{reviewsVisible && <MovieReviews reviews={reviews} />}
+					</div>
 				</div>
 			)}
 		</div>
