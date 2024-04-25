@@ -1,11 +1,13 @@
 .moviesearch {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    flex-direction: column;
     align-items: center;
     position: absolute;
+    /* justify-content: center; */
+    margin-bottom: 20px;
     top: 60px;
     left: 20px;
+    list-style: none;
 }
 
 .input {
@@ -32,6 +34,10 @@
     background-color: #0056b3;
 }
 
-.moviesearch {
-    list-style: none;
+.searchContainer {
+    margin-bottom: 20px;
+}
+
+.error {
+    background-color: red;
 }

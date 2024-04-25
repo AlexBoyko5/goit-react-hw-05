@@ -22,6 +22,7 @@ const MovieSearch = () => {
 			};
 			const respons = await axios.get(url, { params });
 			setSearchResults(respons.data.results);
+			setError(null);
 		} catch (error) {
 			setError(error.message);
 		}
@@ -29,16 +30,22 @@ const MovieSearch = () => {
 	return (
 		<div className={styles.moviesearch}>
 			<h1></h1>
-			<input
-				className={styles.input}
-				type="text"
-				value={query}
-				onChange={(event) => setQuery(event.target.value)}
-				placeholder="Enter movie title"
-			/>
-			<button onClick={handleSearch} type="submit" className={styles.button}>
-				Search
-			</button>
+			<div className={styles.searchContainer}>
+				<input
+					className={styles.input}
+					type="text"
+					value={query}
+					onChange={(event) => setQuery(event.target.value)}
+					placeholder="Enter movie title"
+				/>
+				<button
+					onClick={handleSearch}
+					type="submit"
+					className={styles.button}
+				>
+					Search
+				</button>
+			</div>
 			{error && <div>Error:{error}</div>}
 			<MovieList movies={searchResults} />
 		</div>

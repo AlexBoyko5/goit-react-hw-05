@@ -12,7 +12,7 @@ const MoviesPage = () => {
 			try {
 				const url = `https://api.themoviedb.org/3/discover/movie`;
 				const params = {
-					api_key: API_READ_ACCESS_TOKEN,
+					api_key: 'API_READ_ACCESS_TOKEN',
 					language: 'en-US',
 					sort_by: 'popularity.desc',
 					include_adult: false,
