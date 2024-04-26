@@ -1,8 +1,8 @@
 // import reactLogo from '../../assets/react.svg';
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
-import MovieSearch from '../MovieSearch/MovieSearch';
 import MovieCast from '../MovieCast/MovieCast';
 import MovieReviews from '../MovieReviews/MovieReviews';
 
@@ -31,9 +31,11 @@ function App() {
 
 				<Routes>
 					<Route exact path="/" element={<HomePage apiKey={apiKey} />} />
-
-					<Route path="/movies" className="search-container">
+					<Route path="/movies" element={<MoviesPage />} />
+					<Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+					{/* <Route path="/movies" className="search-container">
 						<Route path="reviews" element={<MoviesPage />} />
+						<Route path="*" element={<Outlet />} />
 						<Route
 							path=":movieId"
 							element={<MovieDetailsPage apiKey={apiKey} />}
@@ -41,12 +43,11 @@ function App() {
 							<Route path="cast" element={<MovieCast />} />
 							<Route path="reviews" element={<MovieReviews />} />
 						</Route>
-					</Route>
-
+					</Route> */}
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
+				<Outlet />
 			</Suspense>
-			<MovieSearch />
 		</div>
 	);
 }
