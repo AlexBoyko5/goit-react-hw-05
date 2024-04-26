@@ -1,5 +1,23 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import styles from './MovieReviews.module.css';
-const MovieReviews = ({ reviews }) => {
+
+const MovieReviews = () => {
+	const [reviews, setReviews] = useState([]);
+	const { movieId } = useParams();
+	useEffect(() => {
+		const fetchMovieReviews = async () => {
+			try {
+				const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews`;
+				const response = await axios.get(url);
+				setReviews(response.data.cast);
+			} catch (error) {
+				console.error('Error fetching movie cast:', error.message);
+			}
+		};
+		fetchMovieReviews();
+	}, [movieId]);
 	return (
 		<div>
 			{/* <h2>Reviews</h2> */}

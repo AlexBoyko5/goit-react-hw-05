@@ -1,6 +1,6 @@
 // import reactLogo from '../../assets/react.svg';
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import MovieSearch from '../MovieSearch/MovieSearch';
 import MovieCast from '../MovieCast/MovieCast';
@@ -21,19 +21,19 @@ function App() {
 	const apiKey = 'ec261201863a731c0d3b446536ab92e4';
 
 	return (
-		<Router>
+		<div className=".container - route">
 			{/* Router для маршрутизации*/}
 			<Navigation />
 
 			{/* Navigation для Router на всех стр*/}
 			<Suspense fallback={<div>Loading...</div>}>
 				{/* Suspense для заглушки*/}
+
 				<Routes>
 					<Route exact path="/" element={<HomePage apiKey={apiKey} />} />
 
 					<Route path="/movies" className="search-container">
-						<Route path="" element={<MovieSearch />} />
-						<Route path="reviews" index element={<MoviesPage />} />
+						<Route path="reviews" element={<MoviesPage />} />
 						<Route
 							path=":movieId"
 							element={<MovieDetailsPage apiKey={apiKey} />}
@@ -46,7 +46,8 @@ function App() {
 					<Route path="*" element={<NotFoundPage />} />
 				</Routes>
 			</Suspense>
-		</Router>
+			<MovieSearch />
+		</div>
 	);
 }
 

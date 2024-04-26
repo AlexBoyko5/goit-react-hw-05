@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import MovieCast from '../../components/MovieCast/MovieCast';
 import MovieReviews from '../../components/MovieReviews/MovieReviews';
@@ -16,6 +16,7 @@ const MovieDetailsPage = () => {
 
 	const navigate = useNavigate();
 	const { movieId } = useParams();
+	const prevLocation = useRef(null);
 
 	const toggleCast = () => {
 		setCastVisible(!castVisible);
@@ -70,17 +71,22 @@ const MovieDetailsPage = () => {
 				setError(error.message);
 			}
 		};
+
+		prevLocation.current = window.location.pathname;
 		fetchMovieDetails();
 		fecthMovieCast();
 		fecthMovieReviews();
 	}, [movieId]);
+	const goBack = () => {
+		navigate(prevLocation.current);
+	};
 	return (
 		<div>
 			{!movieDetails ? ( // обработка если данные еще загружаются
 				<div>Loading...</div>
 			) : (
 				<div className={styles.container}>
-					<button onClick={() => navigate(-1)} className={styles.button}>
+					<button onClick={goBack} className={styles.button}>
 						Go back
 					</button>
 					<div className={styles.movieInfo}>
